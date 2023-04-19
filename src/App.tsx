@@ -16,12 +16,12 @@ function App() {
         color: "red"
     },
     {
-        name: "CV",
+        name: "Online CV",
         href: "#",
         color: "orange"
     },
     {
-        name: "Send me a project!",
+        name: "Project request!",
         href: "#",
         color: "blue"
     },

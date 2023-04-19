@@ -9,8 +9,22 @@ interface Props {
 }
 
 function Navbar({ links }: Props) {
+  const hoverStyles = links
+    .map(
+      (link, index) => `
+        .nav-link[data-index="${index}"]:hover::before,
+        .nav-link[data-index="${index}"]:hover::after,
+        .nav-link[data-index="${index}"] span:hover::before,
+        .nav-link[data-index="${index}"] span:hover::after {
+          background-color: ${link.color};
+        }
+      `
+    )
+    .join("\n");
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+      <style>{hoverStyles}</style>
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           Navbar
@@ -38,8 +52,10 @@ function Navbar({ links }: Props) {
                     className="nav-link"
                     aria-current="page"
                     href={link.href}
+                    data-index={index}
+                    // style={{ color: link.color }}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
                   </a>
                 </li>
               );
