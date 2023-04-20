@@ -13,6 +13,8 @@ interface Props {
 // .nav-link[data-index="${index}"].active span::after
 function Navbar({ links }: Props) {
   const [activeLink, setActiveLink] = useState(-1);
+
+  // Styling for colors on hover and active links
   const hoverStyles = links
     .map(
       (link, index) => `
@@ -47,16 +49,20 @@ function Navbar({ links }: Props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
       <style>{hoverStyles}</style>
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
+      <div className="container-fluid justify-content-center">
+        <a className="navbar-brand d-flex justify-content-center justify-content-lg-start me-0" href="#">
+          <img
+            src="/images/cg-productions-logo-without-background.png"
+            alt="CG productions logo"
+            className="brand-logo nav-brand-logo"
+          />
         </a>
 
         <div
-          className="collapse d-flex links-container navbar-collapse"
+          className="collapse d-flex justify-content-center links-container navbar-collapse"
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav mr-auto ms-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-lg-auto mb-2 mb-lg-0">
             {links.map((link, index) => {
               return (
                 <li key={index} className="nav-item">
