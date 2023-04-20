@@ -50,7 +50,7 @@ function Navbar({ links }: Props) {
     <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
       <style>{hoverStyles}</style>
       <div className="container-fluid justify-content-center">
-        <a className="navbar-brand d-flex justify-content-center justify-content-lg-start me-0" href="#">
+        <a className="navbar-brand nav-brand-logo-link d-flex justify-content-center justify-content-lg-start me-0" href="#">
           <img
             src="/images/cg-productions-logo-without-background.png"
             alt="CG productions logo"
@@ -62,7 +62,7 @@ function Navbar({ links }: Props) {
           className="collapse d-flex justify-content-center links-container navbar-collapse"
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav ms-lg-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-lg-auto align-items-center mb-2 mb-lg-0">
             {links.map((link, index) => {
               return (
                 <li key={index} className="nav-item">
