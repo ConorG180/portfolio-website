@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type Link = {
   name: string;
   href: string;
@@ -7,18 +9,38 @@ type Link = {
 interface Props {
   links: Link[];
 }
-
+// .nav-link[data-index="${index}"].active span::before,
+// .nav-link[data-index="${index}"].active span::after
 function Navbar({ links }: Props) {
+  const [activeLink, setActiveLink] = useState(-1);
   const hoverStyles = links
     .map(
       (link, index) => `
-        .nav-link[data-index="${index}"]:hover::before,
-        .nav-link[data-index="${index}"]:hover::after,
-        .nav-link[data-index="${index}"] span:hover::before,
-        .nav-link[data-index="${index}"] span:hover::after {
-          background-color: ${link.color};
-        }
-      `
+      .nav-link[data-index="${index}"]:hover::before,
+      .nav-link[data-index="${index}"]:hover::after,
+      .nav-link[data-index="${index}"] span:hover::before,
+      .nav-link[data-index="${index}"] span:hover::after,
+      .nav-link[data-index="${index}"].active::before,
+      .nav-link[data-index="${index}"].active::after,
+      .nav-link[data-index="${index}"].active span::before,
+      .nav-link[data-index="${index}"].active span::after {
+        background-color: ${link.color};
+      }
+      .nav-link[data-index="${index}"]:hover span,
+      .nav-link[data-index="${index}"].active span {
+        color: #fff;
+      }
+      .nav-link[data-index="${index}"].active::before,
+      .nav-link[data-index="${index}"].active::after {
+        left: 0;
+        right: 0;
+      }
+      .nav-link[data-index="${index}"].active span::before,
+      .nav-link[data-index="${index}"].active span::after {
+        top: 0;
+        bottom: 0;
+      }
+    `
     )
     .join("\n");
 
@@ -29,17 +51,7 @@ function Navbar({ links }: Props) {
         <a className="navbar-brand" href="#">
           Navbar
         </a>
-        {/* <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button> */}
+
         <div
           className="collapse d-flex links-container navbar-collapse"
           id="navbarSupportedContent"
@@ -49,11 +61,11 @@ function Navbar({ links }: Props) {
               return (
                 <li key={index} className="nav-item">
                   <a
-                    className="nav-link"
+                    className={`nav-link ${activeLink === index && "active"}`}
                     aria-current="page"
                     href={link.href}
                     data-index={index}
-                    // style={{ color: link.color }}
+                    onClick={(e) => setActiveLink(index)}
                   >
                     <span>{link.name}</span>
                   </a>
