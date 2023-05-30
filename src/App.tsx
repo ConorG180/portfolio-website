@@ -1,5 +1,5 @@
 import HelloWorld from "./components/HelloWorld";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import "./App.css";
 
 

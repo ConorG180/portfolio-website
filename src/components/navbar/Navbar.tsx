@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Navbar.css";
 
 type Link = {
   name: string;
